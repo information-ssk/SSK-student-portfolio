@@ -1,4 +1,4 @@
-const APPSCRIPT_URL = import.meta.env.VITE_APPSCRIPT_URL || 'https://script.google.com/macros/d/YOUR_DEPLOYMENT_ID/exec';
+const APPSCRIPT_URL = import.meta.env.VITE_APPSCRIPT_URL || 'https://script.google.com/macros/d/AKfycbw5dXYC-3KORzjCRSExnpgTA9TkIHju8U8Ed7khoNGt4e0tgd36yjN3UEUWyvdCgvg/exec';
 const TOKEN_KEY = 'ssk_user_token';
 const EMAIL_KEY = 'ssk_user_email';
 const DEPT_KEY = 'ssk_user_dept';

@@ -229,17 +229,23 @@ function renderHomeGrid() {
 
 function showDetail(index) {
   const item = achievements[index];
-  if (!item) return;
-
-  document.getElementById('detail-title').textContent = item.project || '-';
+  const titleEl = document.getElementById('detail-title');
   const content = document.getElementById('detail-content');
-  if (!content) return;
+  if (!content || !titleEl) return;
+  if (!item) {
+    titleEl.textContent = 'ไม่พบรายละเอียด';
+    content.innerHTML = '<p class="text-gray-500">ขออภัย ไม่พบข้อมูลผลงานนี้</p>';
+    document.getElementById('detail-modal')?.classList.remove('hidden');
+    return;
+  }
+
+  titleEl.textContent = item.project || '-';
 
   let html = `
-    <div class="space-y-3 text-sm">
-      <div class="grid grid-cols-2 gap-3">
-        <div><span class="text-gray-400">ปีการศึกษา:</span> <strong>${item.year || '-'}</strong></div>
-        <div><span class="text-gray-400">ระดับ:</span> <strong>${item.level || '-'}</strong></div>
+    <div class="space-y-4 text-sm text-gray-700">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-pink-50 rounded-3xl p-4 border border-pink-100">
+        <div><span class="text-gray-400">ปีการศึกษา:</span> <strong class="text-gray-900">${item.year || '-'}</strong></div>
+        <div><span class="text-gray-400">ระดับ:</span> <strong class="text-gray-900">${item.level || '-'}</strong></div>
         <div><span class="text-gray-400">หน่วยงาน:</span> ${item.org || '-'}</div>
         <div><span class="text-gray-400">สถานที่:</span> ${item.place || '-'}</div>
       </div>
@@ -264,6 +270,12 @@ function showDetail(index) {
           ${item.fileUrls.map(url => `<li><a href="${url}" target="_blank" class="text-pink-600 hover:underline">เปิดไฟล์แนบ</a></li>`).join('')}
         </ul>
       </div>
+    `;
+  }
+
+  if (!item.fileUrls?.length && !item.competitions?.length) {
+    html += `
+      <div class="border-t border-pink-100 pt-3 mt-3 text-gray-500">ไม่มีข้อมูลเพิ่มเติมสำหรับผลงานนี้</div>
     `;
   }
 

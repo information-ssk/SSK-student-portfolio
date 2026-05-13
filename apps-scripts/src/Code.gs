@@ -1,5 +1,5 @@
-const SHEET_ID = 'YOUR_SHEET_ID_HERE';
-const FOLDER_ID = 'YOUR_FOLDER_ID_HERE';
+const SHEET_ID = '1csUBR9QdvqHEYTiIospBAb5KjuRupIOBJZkBTphCz0U';
+const FOLDER_ID = '1kIk_4pcz9DiuoA82K8Fnr8Conq3Y1Dnk';
 const TOKEN_PREFIX = 'auth_token_';
 const TOKEN_TTL_MS = 24 * 60 * 60 * 1000;
 

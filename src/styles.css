@@ -26,13 +26,48 @@
 }
 
 .card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(236, 72, 153, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 50px rgba(236, 72, 153, 0.18);
 }
 
 .glass {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, rgba(251, 207, 232, 0.35), transparent 30%),
+              radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.15), transparent 25%),
+              linear-gradient(180deg, #fff 0%, #fde7f3 45%, #fff 100%);
+}
+
+.page-panel {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(251, 207, 232, 0.8);
+  border-radius: 32px;
+  box-shadow: 0 18px 60px rgba(236, 72, 153, 0.08);
+}
+
+.btn-secondary {
+  background: white;
+  color: #db2777;
+  border: 1.5px solid #fbcfe8;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #fdf2f8;
+}
+
+.modal-card {
+  border-radius: 32px;
+  box-shadow: 0 24px 80px rgba(31, 41, 55, 0.18);
+  max-width: 770px;
+}
+
+.modal-overlay {
+  padding: 1.5rem;
 }
 
 .btn-pink {
