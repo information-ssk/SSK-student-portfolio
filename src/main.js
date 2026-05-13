@@ -1,5 +1,5 @@
 import './styles.css';
-import { initApp } from './app.js';
+import { initApp } from '../frontend/app.js';
 
 initApp();
 lucide.createIcons();
