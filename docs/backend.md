@@ -11,7 +11,7 @@ This backend is built as a Google Apps Script web app that stores records in Goo
   - Supports staff login with `@ssk.ac.th` email and password `sskssk`
 
 - `action=validateToken` (GET)
-  - Accepts `Authorization: Bearer <token>`
+  - Accepts `token` as a query parameter
   - Returns `{ success: true, valid: true/false }`
 
 - `action=upload` (POST)
