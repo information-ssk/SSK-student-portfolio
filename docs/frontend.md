@@ -1,187 +1,28 @@
-''' <!doctype html>
-<html lang="th" class="h-full">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ผลงานความภาคภูมิใจนักเรียน โรงเรียนสตรีสิริเกศ</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&amp;family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-  <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        pink: {
-                            50: '#fdf2f8',
-                            100: '#fce7f3',
-                            200: '#fbcfe8',
-                            300: '#f9a8d4',
-                            400: '#f472b6',
-                            500: '#ec4899',
-                            600: '#db2777',
-                            700: '#be185d',
-                            800: '#9d174d',
-                            900: '#831843'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-  <style>
-        * { font-family: 'Sarabun', sans-serif; }
-        .font-heading { font-family: 'Prompt', sans-serif; }
-        .fade-in { animation: fadeIn 0.3s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .card-hover { transition: all 0.3s ease; }
-        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(236,72,153,0.15); }
-        .glass { background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); }
-        .btn-pink { background: linear-gradient(135deg, #ec4899, #db2777); color: white; transition: all 0.3s; }
-        .btn-pink:hover { background: linear-gradient(135deg, #db2777, #be185d); transform: scale(1.02); }
-        .input-style { border: 1.5px solid #fbcfe8; border-radius: 8px; padding: 8px 12px; width: 100%; transition: border-color 0.3s; }
-        .input-style:focus { outline: none; border-color: #ec4899; box-shadow: 0 0 0 3px rgba(236,72,153,0.1); }
-        .select-style { border: 1.5px solid #fbcfe8; border-radius: 8px; padding: 8px 12px; width: 100%; background: white; transition: border-color 0.3s; }
-        .select-style:focus { outline: none; border-color: #ec4899; }
-        .badge { display: inline-flex; align-items: center; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 500; }
-        .toast { position: fixed; top: 20px; right: 20px; z-index: 9999; padding: 12px 24px; border-radius: 8px; color: white; font-weight: 500; animation: slideIn 0.3s ease; }
-        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center; }
-        .loading-spinner { border: 3px solid #fce7f3; border-top: 3px solid #ec4899; border-radius: 50%; width: 24px; height: 24px; animation: spin 0.8s linear infinite; display: inline-block; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-    </style>
-  <style>body { box-sizing: border-box; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="h-full bg-gradient-to-br from-pink-50 via-white to-pink-50">
-  <div id="app" class="h-full w-full overflow-auto"><!-- Toast Container -->
-   <div id="toast-container"></div><!-- ============ PAGE: HOME ============ -->
-   <div id="page-home" class="fade-in">
-    <header class="glass sticky top-0 z-50 border-b border-pink-100 shadow-sm">
-     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3"><img src="https://www.ssk.ac.th/wp-content/uploads/2015/07/ssklogo158x190px.png" alt="โลโก้โรงเรียนสตรีสิริเกศ" class="w-10 h-12 object-contain" loading="lazy" onerror="this.style.background='#fce7f3';this.alt='Logo';">
-       <div>
-        <h1 class="font-heading font-bold text-pink-700 text-lg leading-tight" id="main-title">ผลงานความภาคภูมิใจนักเรียน</h1>
-        <p class="text-pink-400 text-xs">โรงเรียนสตรีสิริเกศ</p>
-       </div>
-      </div><button onclick="showPage('login')" class="btn-pink px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2"> <i data-lucide="log-in" style="width:16px;height:16px;"></i> เข้าสู่ระบบ </button>
-     </div>
-    </header>
-    <main class="max-w-7xl mx-auto px-4 py-8"><!-- Search -->
-     <div class="mb-8 flex flex-col sm:flex-row gap-3">
-      <div class="relative flex-1"><i data-lucide="search" style="width:18px;height:18px;" class="absolute left-3 top-1/2 -translate-y-1/2 text-pink-300"></i> <input type="text" id="search-input" placeholder="ค้นหาผลงาน..." class="input-style pl-10" oninput="filterAchievements()">
-      </div><select id="filter-level" class="select-style sm:w-48" onchange="filterAchievements()"> <option value="">ทุกระดับ</option> <option value="นานาชาติ">นานาชาติ</option> <option value="ชาติ">ชาติ</option> <option value="ภาค(เทียบเท่าชาติ)">ภาค(เทียบเท่าชาติ)</option> <option value="ภาค">ภาค</option> <option value="จังหวัด">จังหวัด</option> <option value="เขตพื้นที่การศึกษา">เขตพื้นที่การศึกษา</option> </select>
-     </div><!-- Achievement Grid -->
-     <div id="achievement-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      <div class="text-center text-pink-300 py-16 col-span-full"><i data-lucide="trophy" style="width:48px;height:48px;margin:0 auto 12px;"></i>
-       <p class="text-lg">ยังไม่มีผลงานในระบบ</p>
-       <p class="text-sm">เข้าสู่ระบบเพื่อเริ่มบันทึกผลงาน</p>
-      </div>
-     </div>
-    </main>
-   </div><!-- ============ PAGE: LOGIN ============ -->
-   <div id="page-login" class="fade-in hidden">
-    <header class="glass sticky top-0 z-50 border-b border-pink-100 shadow-sm">
-     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3"><button onclick="showPage('home')" class="text-pink-500 hover:text-pink-700"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i></button>
-      <h1 class="font-heading font-bold text-pink-700">เข้าสู่ระบบ</h1>
-     </div>
-    </header>
-    <main class="max-w-md mx-auto px-4 py-12">
-     <div class="bg-white rounded-2xl shadow-lg p-8 border border-pink-100">
-      <div class="text-center mb-6"><img src="https://www.ssk.ac.th/wp-content/uploads/2015/07/ssklogo158x190px.png" alt="Logo" class="w-16 h-20 mx-auto mb-3" loading="lazy" onerror="this.style.background='#fce7f3';">
-       <h2 class="font-heading font-bold text-pink-700 text-xl">เข้าสู่ระบบ</h2>
-      </div>
-      <form onsubmit="handleLogin(event)"><label class="block text-sm font-medium text-pink-700 mb-1">เลือกหน่วยงาน</label> <select id="login-dept" class="select-style mb-4" onchange="toggleEmailField()"> <option value="">-- เลือก --</option> <optgroup label="กลุ่มสาระการเรียนรู้"> <option value="ภาษาไทย">ภาษาไทย</option> <option value="คณิตศาสตร์">คณิตศาสตร์</option> <option value="วิทยาศาสตร์และเทคโนโลยี">วิทยาศาสตร์และเทคโนโลยี</option> <option value="สังคมศึกษาฯ">สังคมศึกษาฯ</option> <option value="ภาษาต่างประเทศ">ภาษาต่างประเทศ</option> <option value="สุขศึกษาและพลศึกษา">สุขศึกษาและพลศึกษา</option> <option value="ศิลปะ">ศิลปะ</option> <option value="การงานอาชีพ">การงานอาชีพ</option> </optgroup> <optgroup label="กลุ่มงาน"> <option value="กลุ่มงานวิชาการ">กลุ่มงานวิชาการ</option> <option value="กลุ่มงานบริหารทั่วไป">กลุ่มงานบริหารทั่วไป</option> <option value="กลุ่มงานงบประมาณ">กลุ่มงานงบประมาณ</option> <option value="กลุ่มงานบุคคล">กลุ่มงานบุคคล</option> </optgroup> <option value="อื่นๆ">อื่นๆ (ระบุ)</option> <option value="Admin">Admin</option> </select>
-       <div id="login-other-dept-wrap" class="hidden mb-4"><input type="text" id="login-other-dept" class="input-style" placeholder="ระบุหน่วยงาน">
-       </div>
-       <div id="login-email-wrap"><label class="block text-sm font-medium text-pink-700 mb-1">อีเมล (@ssk.ac.th)</label> <input type="email" id="login-email" class="input-style mb-4" placeholder="yourname@ssk.ac.th">
-       </div><label class="block text-sm font-medium text-pink-700 mb-1">รหัสผ่าน</label> <input type="password" id="login-password" class="input-style mb-6" placeholder="••••••"> <button type="submit" class="btn-pink w-full py-3 rounded-lg font-semibold text-base">เข้าสู่ระบบ</button>
-      </form>
-      <div id="login-error" class="hidden mt-4 text-red-500 text-sm text-center bg-red-50 p-3 rounded-lg"></div>
-     </div>
-    </main>
-   </div><!-- ============ PAGE: RECORD ============ -->
-   <div id="page-record" class="fade-in hidden">
-    <header class="glass sticky top-0 z-50 border-b border-pink-100 shadow-sm">
-     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3"><button onclick="showPage('manage')" class="text-pink-500 hover:text-pink-700"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i></button>
-       <h1 class="font-heading font-bold text-pink-700">บันทึกผลงาน</h1>
-      </div><span id="record-user-badge" class="badge bg-pink-100 text-pink-700"></span>
-     </div>
-    </header>
-    <main class="max-w-4xl mx-auto px-4 py-6">
-     <form id="record-form" onsubmit="handleSaveRecord(event)"><!-- 3.1 General Info -->
-      <section class="bg-white rounded-xl border border-pink-100 p-6 mb-5 shadow-sm">
-       <h3 class="font-heading font-semibold text-pink-700 mb-4 flex items-center gap-2"><i data-lucide="info" style="width:18px;height:18px;"></i> ข้อมูลทั่วไป</h3>
-       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-        <div><label class="text-sm font-medium text-gray-600">ปีการศึกษา</label> <select id="rec-year" class="select-style mt-1"> <option value="2568">2568</option> <option value="2569">2569</option> <option value="2570">2570</option> <option value="2571">2571</option> <option value="2572">2572</option> <option value="อื่นๆ">อื่นๆ (ระบุ)</option> </select> <input type="text" id="rec-year-other" class="input-style mt-2 hidden" placeholder="ระบุปีการศึกษา">
-        </div>
-        <div><label class="text-sm font-medium text-gray-600">ระดับ</label> <select id="rec-level" class="select-style mt-1"> <option value="นานาชาติ">นานาชาติ</option> <option value="ชาติ">ชาติ</option> <option value="ภาค(เทียบเท่าชาติ)">ภาค(เทียบเท่าชาติ)</option> <option value="ภาค">ภาค</option> <option value="จังหวัด">จังหวัด</option> <option value="เขตพื้นที่การศึกษา">เขตพื้นที่การศึกษา</option> </select>
-        </div>
-       </div>
-       <div class="mb-4"><label class="text-sm font-medium text-gray-600">ชื่อโครงการ/กิจกรรม</label> <input type="text" id="rec-project" class="input-style mt-1" placeholder="ชื่อโครงการ/กิจกรรม" required>
-       </div>
-       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div><label class="text-sm font-medium text-gray-600">หน่วยงานที่รับผิดชอบ</label> <input type="text" id="rec-org" class="input-style mt-1" placeholder="หน่วยงาน">
-        </div>
-        <div><label class="text-sm font-medium text-gray-600">สถานที่จัด</label> <input type="text" id="rec-place" class="input-style mt-1" placeholder="สถานที่">
-        </div>
-        <div><label class="text-sm font-medium text-gray-600">วันที่จัด</label> <input type="date" id="rec-date" class="input-style mt-1">
-        </div>
-       </div>
-      </section><!-- 3.2-3.4 Competition Items -->
-      <div id="competition-items-container"></div><button type="button" onclick="addCompetitionItem()" class="mb-5 w-full py-3 border-2 border-dashed border-pink-300 rounded-xl text-pink-500 font-medium hover:bg-pink-50 transition flex items-center justify-center gap-2"> <i data-lucide="plus-circle" style="width:20px;height:20px;"></i> เพิ่มรายการแข่งขัน </button> <!-- 3.5 File Upload -->
-      <section class="bg-white rounded-xl border border-pink-100 p-6 mb-5 shadow-sm">
-       <h3 class="font-heading font-semibold text-pink-700 mb-4 flex items-center gap-2"><i data-lucide="paperclip" style="width:18px;height:18px;"></i> แนบไฟล์หลักฐาน (สูงสุด 5 ไฟล์)</h3><input type="file" id="rec-files" multiple accept=".png,.jpg,.jpeg,.pdf" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-pink-100 file:text-pink-700 hover:file:bg-pink-200" onchange="validateFiles(this)">
-       <p class="text-xs text-gray-400 mt-2">รองรับ PNG, JPG, PDF (สูงสุด 5 ไฟล์)</p>
-       <div id="file-preview" class="mt-3 flex flex-wrap gap-2"></div>
-      </section><!-- Submit -->
-      <div class="flex gap-3"><button type="submit" id="btn-save-record" class="btn-pink flex-1 py-3 rounded-xl font-semibold text-base flex items-center justify-center gap-2"> <i data-lucide="save" style="width:18px;height:18px;"></i> บันทึกข้อมูล </button>
-      </div>
-      <div id="save-status" class="hidden mt-4 text-center p-3 rounded-lg"></div>
-     </form>
-    </main>
-   </div><!-- ============ PAGE: MANAGE ============ -->
-   <div id="page-manage" class="fade-in hidden">
-    <header class="glass sticky top-0 z-50 border-b border-pink-100 shadow-sm">
-     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3"><img src="https://www.ssk.ac.th/wp-content/uploads/2015/07/ssklogo158x190px.png" alt="Logo" class="w-8 h-10 object-contain" loading="lazy" onerror="this.style.background='#fce7f3';">
-       <h1 class="font-heading font-bold text-pink-700">จัดการผลงาน</h1>
-      </div>
-      <div class="flex items-center gap-2"><span id="manage-user-badge" class="badge bg-pink-100 text-pink-700 text-xs"></span> <button onclick="handleLogout()" class="text-pink-500 hover:text-pink-700 p-2" title="ออกจากระบบ"><i data-lucide="log-out" style="width:18px;height:18px;"></i></button>
-      </div>
-     </div>
-    </header>
-    <main class="max-w-7xl mx-auto px-4 py-6">
-     <div class="flex flex-col sm:flex-row gap-3 mb-6"><button onclick="showPage('record');initRecordForm()" class="btn-pink px-5 py-2.5 rounded-lg font-medium flex items-center gap-2"> <i data-lucide="plus" style="width:18px;height:18px;"></i> บันทึกผลงานใหม่ </button> <button onclick="showPage('home')" class="px-5 py-2.5 rounded-lg font-medium border border-pink-200 text-pink-600 hover:bg-pink-50 flex items-center gap-2"> <i data-lucide="eye" style="width:18px;height:18px;"></i> ดูหน้าแรก </button>
-     </div>
-     <div id="manage-list" class="space-y-4">
-      <div class="text-center text-pink-300 py-12">
-       <p>ยังไม่มีผลงานที่บันทึก</p>
-      </div>
-     </div>
-    </main>
-   </div><!-- ============ DETAIL MODAL ============ -->
-   <div id="detail-modal" class="modal-overlay hidden" onclick="if(event.target===this)closeDetailModal()">
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[85%] overflow-auto m-4 p-6">
-     <div class="flex justify-between items-start mb-4">
-      <h2 class="font-heading font-bold text-pink-700 text-xl" id="detail-title"></h2><button onclick="closeDetailModal()" class="text-gray-400 hover:text-gray-600"><i data-lucide="x" style="width:24px;height:24px;"></i></button>
-     </div>
-     <div id="detail-content"></div>
-    </div>
-   </div><!-- ============ DELETE CONFIRM MODAL ============ -->
-   <div id="delete-modal" class="modal-overlay hidden" onclick="if(event.target===this)closeDeleteModal()">
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm m-4 p-6 text-center">
-     <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4"><i data-lucide="trash-2" style="width:24px;height:24px;color:#ef4444;"></i>
-     </div>
-     <h3 class="font-heading font-bold text-gray-800 text-lg mb-2">ยืนยันการลบ</h3>
-     <p class="text-gray-500 text-sm mb-6">คุณต้องการลบผลงานนี้หรือไม่? ข้อมูลจะถูกลบออกจากระบบทั้งหมด</p>
-     <div class="flex gap-3"><button onclick="closeDeleteModal()" class="flex-1 py-2.5 rounded-lg border border-gray-200 text-gray-600 font-medium hover:bg-gray-50">ยกเลิก</button> <button id="btn-confirm-delete" onclick="confirmDelete()" class="flex-1 py-2.5 rounded-lg bg-red-500 text-white font-medium hover:bg-red-600">ลบ</button>
-     </div>
-    </div>
-   </div>
-  </div>
+# Frontend Specification
+
+This frontend supports a teacher-friendly student portfolio interface for SSK school.
+
+## Features
+
+- Login screen with department selection and email validation for @ssk.ac.th users.
+- Admin login by selecting `Admin` and using password `adminssk`.
+- Home screen with searchable, filterable achievement cards.
+- Manage screen showing user-related records and a detail modal.
+- Record screen with dynamic competition entries and file upload support.
+- All frontend network calls use the single constant `APPSCRIPT_URL` in `frontend/auth.js`.
+- Session persistence uses `localStorage` keys `ssk_user_token`, `ssk_user_email`, and `ssk_user_dept`.
+
+## File Structure
+
+- `frontend/auth.js` - token-based login, validation, localStorage session persistence, and retry logic.
+- `frontend/app.js` - page wiring, record submission, list rendering, pagination helper, and UI state.
+- `src/main.js` - Vite entrypoint that loads `frontend/app.js`.
+- `index.html` - page markup and root Vite bootstrap.
+
+## Environment
+
+- `VITE_APPSCRIPT_URL` must be set in Vercel to the deployed Apps Script web app URL.
+- `VITE_SHEET_ID` is also configured in Vercel for reference and future backend integration.
   <script>
 // ==================== STATE ====================
 let currentUser = null; // { dept, email, isAdmin }

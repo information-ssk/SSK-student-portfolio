@@ -1,60 +1,64 @@
 # Deployment Guide
 
-## Frontend Deployment (Vercel)
+This repository delivers a Vercel-hosted frontend and a Google Apps Script backend.
+
+## 1. Frontend Deployment (Vercel)
 
 ### Prerequisites
 - Vercel account
-- GitHub repository with this code
+- Repository connected to Vercel
 
-### Steps
-1. Connect your GitHub repo to Vercel
-2. Add environment variables in Vercel dashboard:
-   - `VITE_SUPABASE_URL` = `https://0ec90b57d6e95fcbda19832f.supabase.co`
-   - `VITE_SUPABASE_SUPABASE_ANON_KEY` = (your Supabase anon key)
-3. Deploy - Vercel will automatically build and deploy
+### Vercel Environment Variables
+Set the following values in the Vercel dashboard:
+- `VITE_APPSCRIPT_URL` = your Apps Script web app URL
+- `VITE_SHEET_ID` = your Google Sheet ID (for reference)
 
-### Local Testing
+### Build Settings
+- Build Command: `npm run build`
+- Output Directory: `dist`
+
+### Local Build
 ```bash
 npm install
 npm run build
 npm run preview
 ```
 
-## Backend Deployment (Google Apps Script)
+## 2. Backend Deployment (Google Apps Script)
 
 ### Prerequisites
 - Google Account
-- Google Apps Script project
+- `clasp` installed locally
 
-### Steps
-1. Go to [script.google.com](https://script.google.com)
-2. Create a new project
-3. Replace the code with contents of `apps-scripts/src/Code.gs`
-4. Deploy as web app:
-   - Click "Deploy" → "New deployment"
-   - Type: "Web app"
-   - Execute as: Your account
-   - Who has access: "Anyone"
-5. Copy the deployment URL and share with frontend
+### Setup
+1. Open a terminal in the repository root.
+2. Change to the Apps Script directory:
+   ```bash
+   cd apps-scripts
+   ```
+3. Update `apps-scripts/src/Code.gs` with your real `SHEET_ID` and `FOLDER_ID`.
+4. Authenticate with Google:
+   ```bash
+   clasp login
+   ```
+5. Push the script:
+   ```bash
+   clasp push
+   ```
+6. Deploy as a web app:
+   ```bash
+   clasp deploy --description 'Deploy student portfolio backend'
+   ```
+7. Copy the deployment URL and set it as `VITE_APPSCRIPT_URL` in Vercel.
 
-### Update Frontend
-Add the Apps Script URL to `.env`:
-```
-VITE_APPSCRIPT_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/usercallback
-```
+## 3. Environment Variables for Vercel
+Paste these values into the Vercel dashboard:
+- `VITE_APPSCRIPT_URL` = `https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec`
+- `VITE_SHEET_ID` = `YOUR_GOOGLE_SHEET_ID`
 
-## Supabase Setup
-
-Database tables and policies are automatically created via migrations.
-Edge functions are deployed to Supabase.
-
-### Verify Setup
-- Check Supabase dashboard: Tables → achievements
-- Check Edge Functions → upload-achievement-file
-- Verify RLS policies are enabled
-
-## Testing
-
-1. Login with any @ssk.ac.th email and password `sskssk`
-2. Admin login: username `Admin`, password `adminssk`
-3. Data syncs with Supabase in real-time
+## 4. Verification
+- Open the deployed Vercel site and confirm the login screen appears.
+- Test login with `Admin` / `adminssk`.
+- Test login with any `@ssk.ac.th` email and password `sskssk`.
+- Create a record and verify it appears on the manage screen.
+- Confirm uploaded attachments open from the record detail view.
