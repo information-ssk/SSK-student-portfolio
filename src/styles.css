@@ -1,0 +1,142 @@
+* {
+  font-family: 'Sarabun', sans-serif;
+}
+
+.font-heading {
+  font-family: 'Prompt', sans-serif;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(236, 72, 153, 0.15);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+}
+
+.btn-pink {
+  background: linear-gradient(135deg, #ec4899, #db2777);
+  color: white;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-pink:hover {
+  background: linear-gradient(135deg, #db2777, #be185d);
+  transform: scale(1.02);
+}
+
+.input-style {
+  border: 1.5px solid #fbcfe8;
+  border-radius: 8px;
+  padding: 8px 12px;
+  width: 100%;
+  transition: border-color 0.3s;
+  font-size: 1rem;
+}
+
+.input-style:focus {
+  outline: none;
+  border-color: #ec4899;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+}
+
+.select-style {
+  border: 1.5px solid #fbcfe8;
+  border-radius: 8px;
+  padding: 8px 12px;
+  width: 100%;
+  background: white;
+  transition: border-color 0.3s;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.select-style:focus {
+  outline: none;
+  border-color: #ec4899;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  border: 3px solid #fce7f3;
+  border-top: 3px solid #ec4899;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  box-sizing: border-box;
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="th" class="h-full">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ผลงานความภาคภูมิใจนักเรียน โรงเรียนสตรีสิริเกศ</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/styles.css">
+  </head>
+  <body class="h-full bg-gradient-to-br from-pink-50 via-white to-pink-50">
+    <div id="app" class="h-full w-full overflow-auto">
+      <div id="toast-container"></div>
+      <div id="page-home" class="fade-in">
+        <header class="glass sticky top-0 z-50 border-b border-pink-100 shadow-sm">
+          <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="https://www.ssk.ac.th/wp-content/uploads/2015/07/ssklogo158x190px.png" alt="โลโก้โรงเรียนสตรีสิริเกศ" class="w-10 h-12 object-contain" loading="lazy" onerror="this.style.background='#fce7f3';this.alt='Logo';">
+              <div>
+                <h1 class="font-heading font-bold text-pink-700 text-lg leading-tight" id="main-title">ผลงานความภาคภูมิใจนักเรียน</h1>
+                <p class="text-pink-400 text-xs">โรงเรียนสตรีสิริเกศ</p>
+              </div>
+            </div>
+            <button onclick="showPage('login')" class="btn-pink px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2">
+              <i data-lucide="log-in" style="width:16px;height:16px;"></i> เข้าสู่ระบบ
+            </button>
+          </div>
+        </header>
+        <main class="max-w-7xl mx-auto px-4 py-8">
+          <div class="mb-8 flex flex-col sm:flex-row gap-3">
+            <div class="relative flex-1">
+              <i data-lucide="search" style="width:18px;height:18px;" class="absolute left-3 top-1/2 -translate-y-1/2 text-pink-300"></i>
+              <input type="text" id="search-input" placeholder="ค้นหาผลงาน..." class="input-style pl-10" oninput="filterAchievements()">
+            </div>
+            <select id="filter-level" class="select-style sm:w-48" onchange="filterAchievements()">
+              <option value="">ทุกระดับ</option>
+              <option value="นานาชาติ">นานาชาติ</option>
+              <option value="ชาติ">ชาติ</option>
+              <option value="ภาค(เทียบเท่าชาติ)">ภาค(เทียบเท่าชาติ)</option>
+              <option value="ภาค">ภาค</option>
+              <option value="จังหวัด">จังหวัด</option>
+              <option value="เขตพื้นที่การศึกษา">เขตพื้นที่การศึกษา</option>
+            </select>
+          </div>
+          <div id="achievement-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="text-center text-pink-300 py-16 col-span-full">
+              <i data-lucide="trophy" style="width:48px;height:48px;margin:0 auto 12px;"></i>
+              <p class="text-lg">ยังไม่มีผลงานในระบบ</p>
+              <p class="text-sm">เข้าสู่ระบบเพื่อเริ่มบันทึกผลงาน</p>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <div id="page-login" class="fade-in hidden">
+        <header class="glass sticky top-0 z-50 border-b border-pink-100 shadow-sm">
+          <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
+            <button onclick="showPage('home')" class="text-pink-500 hover:text-pink-700"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i></button>
+            <h1 class="font-heading font-bold text-pink-700">เข้าสู่ระบบ</h1>
+          </div>
+        </header>
+        <main class="max-w-md mx-auto px-4 py-12">
+          <div class="bg-white rounded-2xl shadow-lg p-8 border border-pink-100">
+            <div class="text-center mb-6">
+              <img src="https://www.ssk.ac.th/wp-content/uploads/2015/07/ssklogo158x190px.png" alt="Logo" class="w-16 h-20 mx-auto mb-3" loading="lazy" onerror="this.style.background='#fce7f3';">
+              <h2 class="font-heading font-bold text-pink-700 text-xl">เข้าสู่ระบบ</h2>
+            </div>
+            <form onsubmit="handleLogin(event)">
+              <label class="block text-sm font-medium text-pink-700 mb-1">เลือกหน่วยงาน</label>
+              <select id="login-dept" class="select-style mb-4" onchange="toggleEmailField()">
+                <option value="">-- เลือก --</option>
+                <optgroup label="กลุ่มสาระการเรียนรู้">
+                  <option value="ภาษาไทย">ภาษาไทย</option>
+                  <option value="คณิตศาสตร์">คณิตศาสตร์</option>
+                  <option value="วิทยาศาสตร์และเทคโนโลยี">วิทยาศาสตร์และเทคโนโลยี</option>
+                  <option value="สังคมศึกษาฯ">สังคมศึกษาฯ</option>
+                  <option value="ภาษาต่างประเทศ">ภาษาต่างประเทศ</option>
+                  <option value="สุขศึกษาและพลศึกษา">สุขศึกษาและพลศึกษา</option>
+                  <option value="ศิลปะ">ศิลปะ</option>
+                  <option value="การงานอาชีพ">การงานอาชีพ</option>
+                </optgroup>
+                <optgroup label="กลุ่มงาน">
+                  <option value="กลุ่มงานวิชาการ">กลุ่มงานวิชาการ</option>
+                  <option value="กลุ่มงานบริหารทั่วไป">กลุ่มงานบริหารทั่วไป</option>
+                  <option value="กลุ่มงานงบประมาณ">กลุ่มงานงบประมาณ</option>
+                  <option value="กลุ่มงานบุคคล">กลุ่มงานบุคคล</option>
+                </optgroup>
+                <option value="อื่นๆ">อื่นๆ (ระบุ)</option>
+                <option value="Admin">Admin</option>
+              </select>
+              <div id="login-other-dept-wrap" class="hidden mb-4">
+                <input type="text" id="login-other-dept" class="input-style" placeholder="ระบุหน่วยงาน">
+              </div>
+              <div id="login-email-wrap">
+                <label class="block text-sm font-medium text-pink-700 mb-1">อีเมล (@ssk.ac.th)</label>
+                <input type="email" id="login-email" class="input-style mb-4" placeholder="yourname@ssk.ac.th">
+              </div>
+              <label class="block text-sm font-medium text-pink-700 mb-1">รหัสผ่าน</label>
+              <input type="password" id="login-password" class="input-style mb-6" placeholder="••••••">
+              <button type="submit" class="btn-pink w-full py-3 rounded-lg font-semibold text-base">เข้าสู่ระบบ</button>
+            </form>
+            <div id="login-error" class="hidden mt-4 text-red-500 text-sm text-center bg-red-50 p-3 rounded-lg"></div>
+          </div>
+        </main>
+      </div>
+
+      <div id="page-manage" class="fade-in hidden">
+        <header class="glass sticky top-0 z-50 border-b border-pink-100 shadow-sm">
+          <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="https://www.ssk.ac.th/wp-content/uploads/2015/07/ssklogo158x190px.png" alt="Logo" class="w-8 h-10 object-contain" loading="lazy" onerror="this.style.background='#fce7f3';">
+              <h1 class="font-heading font-bold text-pink-700">จัดการผลงาน</h1>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="manage-user-badge" class="badge bg-pink-100 text-pink-700 text-xs"></span>
+              <button onclick="handleLogout()" class="text-pink-500 hover:text-pink-700 p-2" title="ออกจากระบบ"><i data-lucide="log-out" style="width:18px;height:18px;"></i></button>
+            </div>
+          </div>
+        </header>
+        <main class="max-w-7xl mx-auto px-4 py-6">
+          <div class="flex flex-col sm:flex-row gap-3 mb-6">
+            <button onclick="showPage('home')" class="px-5 py-2.5 rounded-lg font-medium border border-pink-200 text-pink-600 hover:bg-pink-50 flex items-center gap-2">
+              <i data-lucide="eye" style="width:18px;height:18px;"></i> ดูหน้าแรก
+            </button>
+          </div>
+          <div id="manage-list" class="space-y-4">
+            <div class="text-center text-pink-300 py-12">
+              <p>ยังไม่มีผลงานที่บันทึก</p>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <div id="detail-modal" class="modal-overlay hidden" onclick="if(event.target===this)closeDetailModal()">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[85%] overflow-auto m-4 p-6">
+          <div class="flex justify-between items-start mb-4">
+            <h2 class="font-heading font-bold text-pink-700 text-xl" id="detail-title"></h2>
+            <button onclick="closeDetailModal()" class="text-gray-400 hover:text-gray-600"><i data-lucide="x" style="width:24px;height:24px;"></i></button>
+          </div>
+          <div id="detail-content"></div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
