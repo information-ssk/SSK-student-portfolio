@@ -1,0 +1,8 @@
+name: ssk-agent
+description: "Coordinator agent for SSK Student Portfolio. Orchestrates Copilot subagents for frontend, apps-script, and deploy tasks."
+version: 1
+entrypoint: copilot-agent
+capabilities:
+  - orchestrate
+  - patch_repo
+  - run_checks

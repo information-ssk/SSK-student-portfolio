@@ -1,0 +1,8 @@
+{
+  "skills": [
+    {"name":"readme-parser","desc":"Parse README and docs to tasks"},
+    {"name":"js-refactor","desc":"Refactor JS auth flow and pagination"},
+    {"name":"apps-script","desc":"Edit and deploy Google Apps Script via clasp"},
+    {"name":"vercel-deploy","desc":"Add vercel.json and deployment steps"}
+  ]
+}

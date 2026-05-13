@@ -1,0 +1,11 @@
+name: copilot-agent
+role: "Use GitHub Copilot to generate and patch code based on README and docs/ content."
+tasks:
+  - name: generate_auth_flow
+    description: "Refactor auth.js and app.js to implement token login, autoLogin, logout, and localStorage persistence."
+  - name: add_vercel_config
+    description: "Add vercel.json and ensure frontend is deployable on Vercel."
+  - name: create_readme_updates
+    description: "Update README with deploy steps and env var instructions."
+triggers:
+  - on_command: "run-copilot-agent"

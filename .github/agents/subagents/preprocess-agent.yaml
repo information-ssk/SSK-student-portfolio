@@ -1,0 +1,9 @@
+name: preprocess-agent
+role: "Preprocess prompts and metadata for Gemini/Notebook LLM. Validate docs/ markdown and produce structured tasks."
+tasks:
+  - name: parse_docs
+    description: "Read docs/frontend.md and docs/backend.md and produce task list and code patches."
+  - name: generate_meta_prompt
+    description: "Create meta-prompt for Copilot Chat to follow when patching repo."
+triggers:
+  - on_command: "run-preprocess"
