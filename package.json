@@ -7,9 +7,7 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "dependencies": {
-    "@supabase/supabase-js": "^2.38.4"
-  },
+  "dependencies": {},
   "devDependencies": {
     "terser": "^5.47.1",
     "vite": "^5.0.0"
