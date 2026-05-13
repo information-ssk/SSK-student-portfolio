@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="th" class="h-full">
+<html lang="th">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ผลงานความภาคภูมิใจนักเรียน โรงเรียนสตรีสิริเกศ</title>
-    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./src/styles.css">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;700&family=Prompt:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>SSK Student Portfolio</title>
   </head>
-  <body class="h-full bg-gradient-to-br from-pink-50 via-white to-pink-50">
-    <div id="app" class="h-full w-full overflow-auto">
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
       <div id="toast-container"></div>
       <div id="page-home" class="fade-in">
         <header class="glass sticky top-0 z-50 border-b border-pink-100 shadow-sm">
@@ -28,6 +29,19 @@
           </div>
         </header>
         <main class="max-w-7xl mx-auto px-4 py-8">
+          <section class="page-panel p-8 mb-8 overflow-hidden">
+            <div class="flex flex-col lg:flex-row items-center gap-6">
+              <div class="flex-1">
+                <p class="text-sm text-pink-500 font-semibold mb-2">ผลงานความภาคภูมิใจนักเรียน</p>
+                <h2 class="font-heading font-bold text-3xl sm:text-4xl text-gray-900 leading-tight">จัดการผลงานนักเรียนและครูได้ง่ายในที่เดียว</h2>
+                <p class="mt-4 text-gray-600 max-w-2xl">ระบบเรียบหรู ใช้ง่าย พร้อมหน้าจอค้นหา และโมดูลจัดการผลงานที่สวยงามเหมือนหน้า Canva</p>
+              </div>
+              <div class="rounded-[32px] bg-pink-50 p-6 shadow-sm border border-pink-100 text-center">
+                <p class="text-sm text-pink-500 mb-2">เริ่มใช้งานได้ทันที</p>
+                <button onclick="showPage('login')" class="btn-pink px-6 py-3 rounded-3xl font-semibold">เข้าสู่ระบบ</button>
+              </div>
+            </div>
+          </section>
           <div class="mb-8 flex flex-col sm:flex-row gap-3">
             <div class="relative flex-1">
               <i data-lucide="search" style="width:18px;height:18px;" class="absolute left-3 top-1/2 -translate-y-1/2 text-pink-300"></i>
@@ -133,10 +147,13 @@
       </div>
 
       <div id="detail-modal" class="modal-overlay hidden" onclick="if(event.target===this)closeDetailModal()">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[85%] overflow-auto m-4 p-6">
-          <div class="flex justify-between items-start mb-4">
-            <h2 class="font-heading font-bold text-pink-700 text-xl" id="detail-title"></h2>
-            <button onclick="closeDetailModal()" class="text-gray-400 hover:text-gray-600"><i data-lucide="x" style="width:24px;height:24px;"></i></button>
+        <div class="modal-card bg-white w-full max-w-3xl max-h-[85%] overflow-auto m-4 p-6">
+          <div class="flex justify-between items-start gap-4 mb-4">
+            <div>
+              <h2 class="font-heading font-bold text-pink-700 text-2xl" id="detail-title"></h2>
+              <p class="text-sm text-gray-500 mt-1">รายละเอียดผลงานและไฟล์แนบ</p>
+            </div>
+            <button onclick="closeDetailModal()" class="text-gray-400 hover:text-gray-600 rounded-full p-2 bg-pink-50 hover:bg-pink-100"><i data-lucide="x" style="width:24px;height:24px;"></i></button>
           </div>
           <div id="detail-content"></div>
         </div>
